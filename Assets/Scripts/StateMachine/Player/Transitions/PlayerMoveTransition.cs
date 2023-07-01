@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Player))]
+[RequireComponent(typeof(PlayerJumpState))]
 public class PlayerMoveTransition : Transition
 {
+    [SerializeField] private float _delay;
+
     private PlayerJumpState _playerJumpState;
     private bool _isFloor;
-    private float _delay;
     private float _currentDelay;
 
     private void Awake()
     {
         _playerJumpState = GetComponent<PlayerJumpState>();
-        _isFloor = false;
-        _delay = 0.5f;
+        _isFloor = false;        
         _currentDelay = _delay;
     }
 

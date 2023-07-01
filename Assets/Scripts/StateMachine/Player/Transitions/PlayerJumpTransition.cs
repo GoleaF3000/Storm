@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Player))]
+[RequireComponent(typeof(PlayerDefenceTransition))]
 public class PlayerJumpTransition : Transition
 {
     private PlayerDefenceTransition _defenceTransition;

@@ -7,14 +7,14 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private int _health;
     [SerializeField] private float _speed;
+    [SerializeField] private GameOverScreen _gameOverScreen;
+    [SerializeField] private VictoryScreen _victoryScreen;
 
     private int _basicHealth;
     private Vector3 _basicPosition;
     private int _wallet = 0;
     private bool _isBase = false;
     private bool _isDead = false;       
-    private GameOverScreen _endScreen;
-    private VictoryScreen _victoryScreen;
 
     public UnityAction<int> ChangingHealth;
     public UnityAction<int> AddedReward;
@@ -25,21 +25,16 @@ public class Player : MonoBehaviour
     public bool IsDead => _isDead;
     public float SpeedPersonage => _speed;
 
-    private void Awake()
-    {
-        _endScreen = GameObject.FindObjectOfType<GameOverScreen>();
-        _victoryScreen = GameObject.FindObjectOfType<VictoryScreen>();
-    }
-
     private void OnEnable()
     {
-        _endScreen.ClosedPanel += Restart;
+        _gameOverScreen.ClosedPanel += Restart;
         _victoryScreen.ClosedPanel += Restart;
     }
 
     private void Start()
     {
-        _basicPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        _basicPosition = new Vector3(transform.position.x, transform.position.y, 
+            transform.position.z);
         _basicHealth = _health;  
         AddedReward?.Invoke(_wallet);
         ChangingHealth?.Invoke(_health);
@@ -55,7 +50,7 @@ public class Player : MonoBehaviour
 
     private void OnDisable()
     {
-        _endScreen.ClosedPanel -= Restart;
+        _gameOverScreen.ClosedPanel -= Restart;
         _victoryScreen.ClosedPanel -= Restart;
     }
 

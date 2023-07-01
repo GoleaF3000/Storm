@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class VictoryScreen : Screen
 {
-    private PlayerCelebrateState _playerCelebrate;
-
-    private void Awake()
-    {
-        _playerCelebrate = FindObjectOfType<PlayerCelebrateState>();
-    }
+    [SerializeField] private PlayerCelebrateState _playerCelebrate;
 
     private void Start()
-    {   
-        foreach (var element in _elements)
+    {
+        foreach (var element in _elementsForManage)
         {
             element.SetActive(false);
         }

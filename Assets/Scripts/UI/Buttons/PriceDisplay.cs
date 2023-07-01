@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+[RequireComponent(typeof(Image))]
 public class PriceDisplay : MonoBehaviour
 {
     [SerializeField] private SkillButton _skillButton;

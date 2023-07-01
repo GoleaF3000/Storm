@@ -10,15 +10,20 @@ public class EnemyMoveTransition : Transition
 
     private void Awake()
     {
-        _enemy = GetComponent<Enemy>();
-        _player = FindObjectOfType<Player>();
+        _enemy = GetComponent<Enemy>();        
     }
 
     private void FixedUpdate() 
     {
-        if ((_enemy.TargetPlayer == null && _enemy.TargetSandbags == null) || _player.IsDead == true)
+        if ((_enemy.TargetPlayer == null && _enemy.TargetSandbags.gameObject.activeInHierarchy == false) 
+            || _player.IsDead == true)
         {
             NeedTransit = true;            
         }
     } 
+
+    public void Init(Player player)
+    {
+        _player = player;
+    }
 }

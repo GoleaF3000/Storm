@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class MenuScreen : Screen
 {
-    protected void Awake()
-    {
-        base.Awake();        
+    private void Awake()
+    {        
         Open();
     }
 
@@ -14,14 +13,14 @@ public class MenuScreen : Screen
     {
         if (_player.IsDead != true)
         {
-            _panel.SetActive(true);
+            gameObject.SetActive(true);
             Time.timeScale = 0;
         }
     }
 
     public new void Close()
     {
-        _panel.SetActive(false);
+        gameObject.SetActive(false);
         Time.timeScale = 1;
     }   
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent (typeof(Slider))]
 public abstract class HealthBarSetter : MonoBehaviour
 {    
     [SerializeField] protected Canvas _canvas;

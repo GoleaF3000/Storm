@@ -6,7 +6,7 @@ public class GameOverScreen : Screen
 {
     private void Start()
     {      
-        foreach (var element in _elements)
+        foreach (var element in _elementsForManage)
         {
             element.SetActive(false);
         }

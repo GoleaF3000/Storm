@@ -2,27 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent (typeof(Player))]
 public class PlayerNewGameTransition : Transition
 {
-    private GameOverScreen _endScreen;
-    private VictoryScreen _victoryScreen;
-
-    private void Awake()
-    {
-        _endScreen = FindObjectOfType<GameOverScreen>();
-        _victoryScreen = FindObjectOfType<VictoryScreen>();
-    }
+    [SerializeField] private GameOverScreen _gameOverScreen;
+    [SerializeField] private VictoryScreen _victoryScreen;
 
     private new void OnEnable()
     {
-        NeedTransit = false;
-        _endScreen.ClosedPanel += AllowTransit;
+        base.OnEnable();
+        _gameOverScreen.ClosedPanel += AllowTransit;
         _victoryScreen.ClosedPanel += AllowTransit;
     }
 
     private void OnDisable()
     {
-        _endScreen.ClosedPanel -= AllowTransit;
+        _gameOverScreen.ClosedPanel -= AllowTransit;
         _victoryScreen.ClosedPanel -= AllowTransit;
     }
 

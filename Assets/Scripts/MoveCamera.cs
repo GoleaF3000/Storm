@@ -11,14 +11,16 @@ public class MoveCamera : MonoBehaviour
 
     void Start()
     {
-        transform.position = new Vector3(_player.transform.position.x + _addToPositionX, _positionY, _positionZ);
+        transform.position = new Vector3(_player.transform.position.x + _addToPositionX,
+            _positionY, _positionZ);
     }
     
     void Update()
     {
-        if (FindObjectOfType<Player>() == true && _player.IsBase == false)
+        if (_player.IsBase == false)
         {
-            transform.position = new Vector3(_player.transform.position.x + _addToPositionX, _positionY, _positionZ);
+            transform.position = new Vector3(_player.transform.position.x + _addToPositionX,
+                _positionY, _positionZ);
         }        
     }
 }

@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider2D))]
 public class TriggerBase : MonoBehaviour
 {
+    [SerializeField] private VictoryScreen _victoryScreen;
+
     private BoxCollider2D _collider;
-    private VictoryScreen _victoryScreen;
 
     private void Awake()
     {
-        _collider = GetComponent<BoxCollider2D>();
-        _victoryScreen = FindObjectOfType<VictoryScreen>();
+        _collider = GetComponent<BoxCollider2D>();       
     }
 
     private void OnEnable()

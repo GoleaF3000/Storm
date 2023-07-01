@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Player))]
+[RequireComponent(typeof(Animator))]
 public class PlayerMoveState : State
 {    
     private Player _player;
@@ -18,7 +19,7 @@ public class PlayerMoveState : State
 
     private void OnEnable()
     {
-        _animator.Play("Walk");
+        _animator.Play(AnimatorPlayerController.States.Walk);
     }
 
     private void Update()

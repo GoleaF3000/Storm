@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Player))]
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(PlayerDefenceTransition))]
 public class PlayerJumpState : State
 {
     [SerializeField] private float _upForce;
@@ -24,11 +27,11 @@ public class PlayerJumpState : State
 
     private void OnEnable()
     {
-        if (_defenceTransition.Sandbags != null)
+        if (_defenceTransition.Sandbags.gameObject.activeInHierarchy == true)
         {
             _rigidbody.AddForce(Vector2.up * _upForce, ForceMode2D.Force);
             _rigidbody.AddForce(Vector2.right * _rightForce, ForceMode2D.Force);
-            _animator.Play("Jump");
+            _animator.Play(AnimatorPlayerController.States.Jump);
             _isJump = true;
         }
         else

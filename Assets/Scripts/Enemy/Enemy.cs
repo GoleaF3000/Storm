@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent (typeof(Animator))]
+[RequireComponent (typeof (EnemyMoveState))]
+[RequireComponent (typeof(EnemyMoveTransition))]
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private int _health;
@@ -19,6 +22,8 @@ public class Enemy : MonoBehaviour
     private Sandbags _targetSanbags;
     private Animator _animator;   
     private GameOverScreen _endScreen;
+    private EnemyMoveState _moveState;
+    private EnemyMoveTransition _moveTransition;
     private float _currentDelay;
 
     public float SpeedPersonage => _speed;
@@ -26,10 +31,11 @@ public class Enemy : MonoBehaviour
     public Sandbags TargetSandbags => _targetSanbags;
 
     private void Awake()
-    {        
-        _endScreen = GameObject.FindObjectOfType<GameOverScreen>();       
-        _player = GameObject.FindObjectOfType<Player>();
+    {   
         _animator = GetComponent<Animator>();
+        _moveState = GetComponent<EnemyMoveState>();
+        _moveTransition = GetComponent<EnemyMoveTransition>();
+        _endScreen = GameObject.FindObjectOfType<GameOverScreen>();
         _currentDelay = _delay;        
     }
 
@@ -39,7 +45,7 @@ public class Enemy : MonoBehaviour
     }
 
     private void OnEnable()
-    {       
+    {        
         _endScreen.ClosedPanel += Restart;
     }    
 
@@ -70,12 +76,12 @@ public class Enemy : MonoBehaviour
                 _targetPlayer.TakeDamage(_damage);
             }
 
-            if (_targetSanbags != null)
+            if (_targetSanbags.enabled == true)
             {
                 _targetSanbags.TakeDamage(_damage);
             }
 
-            _animator.Play("Hit");
+            _animator.Play(AnimatorEnemyController.States.Hit);
             _currentDelay = _delay;
         }
 
@@ -95,5 +101,12 @@ public class Enemy : MonoBehaviour
     public void Restart()
     {
         Destroy(gameObject);
+    }
+
+    public void Init(Player player)
+    {
+        _player = player;  
+        _moveState.Init(player);
+        _moveTransition.Init(player);
     }
 }

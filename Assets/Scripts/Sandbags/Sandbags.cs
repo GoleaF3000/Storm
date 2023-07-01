@@ -10,9 +10,17 @@ public class Sandbags : MonoBehaviour
     public UnityAction<int> SetMaxHealth;
     public UnityAction<int> ChangeHealth;
 
-    private void Start()
+    private int _baseHealth;
+
+    private void Awake()
     {
-        SetMaxHealth?.Invoke(_health);
+        _baseHealth = _health;
+        SetMaxHealth?.Invoke(_baseHealth);
+    }
+
+    public void Restart()
+    {
+        _health = _baseHealth;
     }
 
     public void TakeDamage(int damage)
@@ -22,7 +30,7 @@ public class Sandbags : MonoBehaviour
 
         if (_health <= 0)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

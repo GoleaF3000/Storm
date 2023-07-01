@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(Player))]
+[RequireComponent(typeof(Animator))]
 public class PlayerCelebrateState : State
 {
     public UnityAction Celebrate;
@@ -16,7 +18,7 @@ public class PlayerCelebrateState : State
 
     private void OnEnable()
     {
-        _animator.Play("Celebrate");
+        _animator.Play(AnimatorPlayerController.States.Celebrate);
         Celebrate?.Invoke();
     }
 }

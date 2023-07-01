@@ -11,8 +11,7 @@ public class EnemyMoveState : State
 
     private void Awake()
     {
-        _enemy = GetComponent<Enemy>();
-        _player = FindObjectOfType<Player>();
+        _enemy = GetComponent<Enemy>();        
         _speed = _enemy.SpeedPersonage;
     }
 
@@ -22,5 +21,10 @@ public class EnemyMoveState : State
         {
             transform.Translate(Vector2.left * _speed * Time.deltaTime);
         }
+    }
+
+    public void Init(Player player)
+    {
+        _player = player;
     }
 }

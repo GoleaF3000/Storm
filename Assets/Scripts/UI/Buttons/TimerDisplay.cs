@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+[RequireComponent(typeof(Timer))]
+[RequireComponent(typeof(TMP_Text))]
 public class TimerDisplay : MonoBehaviour
 {
     [SerializeField] private Color _color;

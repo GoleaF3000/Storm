@@ -5,13 +5,11 @@ using UnityEngine;
 public class HealthBarSandbags : HealthBarSetter
 {
     [SerializeField] private Sandbags _sandbags;
-
-    private PlayerDefenseState _playerDefence;
+    [SerializeField] private PlayerDefenseState _playerDefence;
 
     private new void Awake()
     {
-        base.Awake();
-        _playerDefence = FindObjectOfType<PlayerDefenseState>();
+        base.Awake();        
     }
 
     private void Start()
@@ -30,7 +28,8 @@ public class HealthBarSandbags : HealthBarSetter
     {
         _sandbags.SetMaxHealth -= SetMaxValue;
         _sandbags.ChangeHealth -= ChangeValue;
-        _playerDefence.Undefensive -= SwitchOffCanvas;        
+        _playerDefence.Undefensive -= SwitchOffCanvas;
+        _canvas.enabled = false;
     }
 
     private void SwitchOffCanvas()

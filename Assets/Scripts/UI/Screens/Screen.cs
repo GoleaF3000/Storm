@@ -5,22 +5,15 @@ using UnityEngine.Events;
 
 public class Screen : MonoBehaviour
 {
-    [SerializeField] protected GameObject _panel;
-    [SerializeField] protected GameObject[] _elements;
+    [SerializeField] protected Player _player;
+    [SerializeField] protected GameObject[] _elementsForManage;
 
     public UnityAction ClosedPanel;
-    public UnityAction OpenPanel;
-
-    protected Player _player;
-
-    protected void Awake()
-    {
-        _player = FindObjectOfType<Player>();
-    }
+    public UnityAction OpenPanel;  
 
     public void Open()
     {
-        foreach (var element in _elements)
+        foreach (var element in _elementsForManage)
         {
             element.SetActive(true);
         }
@@ -30,7 +23,7 @@ public class Screen : MonoBehaviour
 
     public void Close()
     {
-        foreach (var element in _elements)
+        foreach (var element in _elementsForManage)
         {
             element.SetActive(false);
         }

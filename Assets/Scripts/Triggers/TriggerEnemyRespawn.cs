@@ -13,7 +13,7 @@ public class TriggerEnemyRespawn : MonoBehaviour
         if (collision.TryGetComponent<Player>(out Player player))
         {
             _isPlayerBySandbags?.Invoke();
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Transform))]
 public class Weapon : MonoBehaviour
 {
     [SerializeField] private RateOfFireButton _rateOfFireButton;
@@ -40,7 +42,7 @@ public class Weapon : MonoBehaviour
         if (delay <= 0)
         {
             Instantiate(_bullet, _weaponPosition.position, Quaternion.identity);
-            _animator.Play("Fire");
+            _animator.Play(AnimatorWeaponController.States.Fire);
             delay = _delay;
         }
 

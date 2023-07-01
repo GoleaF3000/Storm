@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Player))]
+[RequireComponent(typeof(Animator))]
 public class PlayerDefenseState : State
 {
     [SerializeField] private Weapon _currentWeapon;
@@ -23,7 +24,7 @@ public class PlayerDefenseState : State
 
     private void OnEnable()
     {
-        _animator.Play("Fire");
+        _animator.Play(AnimatorPlayerController.States.Fire);
         Defensive?.Invoke();
     }
 

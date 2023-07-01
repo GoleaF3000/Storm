@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Image))]
+[RequireComponent(typeof(Button))]
+[RequireComponent(typeof(SkillButton))]
 public class SetterButton : MonoBehaviour
 {
     [SerializeField] private Color _colorOfBlock;
+    [SerializeField] private PlayerDefenseState _playerDefence;
+    [SerializeField] private GameOverScreen _gameOverScreen;
+    [SerializeField] private VictoryScreen _victoryScreen;
 
     private Image _image;
     private Button _button;
     private SkillButton _skillButton;
-    private PlayerDefenseState _playerDefence;
-    private GameOverScreen _endScreen;
-    private VictoryScreen _victoryScreen;
     private Timer _timer;
     private Color _originalColor;
     private bool _isDefensive;
@@ -22,9 +25,6 @@ public class SetterButton : MonoBehaviour
         _image = GetComponent<Image>();
         _button = GetComponent<Button>();
         _skillButton = GetComponent<SkillButton>();
-        _playerDefence = FindObjectOfType<PlayerDefenseState>();
-        _endScreen = GameObject.FindObjectOfType<GameOverScreen>();
-        _victoryScreen = GameObject.FindObjectOfType<VictoryScreen>();
         _timer = _skillButton.Timer;
         _originalColor = _image.color;
         _isDefensive = false;
@@ -37,8 +37,8 @@ public class SetterButton : MonoBehaviour
         _playerDefence.Defensive += OnDefence;
         _timer.StartTimer += ChangeColor;
         _timer.StopTimer += ChangeColor;
-        _endScreen.OpenPanel += Block;
-        _endScreen.OpenPanel += StopLogic;
+        _gameOverScreen.OpenPanel += Block;
+        _gameOverScreen.OpenPanel += StopLogic;
         _victoryScreen.OpenPanel += Block;
         _victoryScreen.OpenPanel += StopLogic;
         _playerDefence.Undefensive += Block;
@@ -53,8 +53,8 @@ public class SetterButton : MonoBehaviour
         _playerDefence.Defensive -= OnDefence;
         _timer.StartTimer -= ChangeColor;
         _timer.StopTimer -= ChangeColor;
-        _endScreen.OpenPanel -= Block;
-        _endScreen.OpenPanel -= StopLogic;
+        _gameOverScreen.OpenPanel -= Block;
+        _gameOverScreen.OpenPanel -= StopLogic;
         _victoryScreen.OpenPanel -= Block;
         _victoryScreen.OpenPanel -= StopLogic;
         _playerDefence.Undefensive -= Block;
