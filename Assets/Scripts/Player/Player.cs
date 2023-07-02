@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent (typeof(PlayerTrigger))]
+[RequireComponent (typeof (PlayerWallet))]
 public class Player : MonoBehaviour
 {
     [SerializeField] private int _health;
@@ -12,16 +14,12 @@ public class Player : MonoBehaviour
 
     private int _basicHealth;
     private Vector3 _basicPosition;
-    private int _wallet = 0;
-    private bool _isBase = false;
+    private PlayerTrigger _trigger;
     private bool _isDead = false;       
 
-    public UnityAction<int> ChangingHealth;
-    public UnityAction<int> AddedReward;
-    public UnityAction Died;
-
-    public int Wallet => _wallet;
-    public bool IsBase => _isBase;
+    public event UnityAction<int> ChangingHealth;    
+    public event UnityAction Died;    
+    
     public bool IsDead => _isDead;
     public float SpeedPersonage => _speed;
 
@@ -35,36 +33,16 @@ public class Player : MonoBehaviour
     {
         _basicPosition = new Vector3(transform.position.x, transform.position.y, 
             transform.position.z);
-        _basicHealth = _health;  
-        AddedReward?.Invoke(_wallet);
+        _basicHealth = _health;         
         ChangingHealth?.Invoke(_health);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.TryGetComponent<TriggerBase>(out TriggerBase triggerBase))
-        {
-            _isBase = true;
-        }
+        _trigger = GetComponent<PlayerTrigger>();
     }
 
     private void OnDisable()
     {
         _gameOverScreen.ClosedPanel -= Restart;
         _victoryScreen.ClosedPanel -= Restart;
-    }
-
-    public void PutReward(int reward)
-    {
-        _wallet += reward;
-        AddedReward?.Invoke(_wallet);
-    }
-
-    public void PayCoins(int price)
-    {
-        _wallet -= price;
-        AddedReward?.Invoke(_wallet);
-    }
+    }   
     
     public void TakeHealthPoints(int healthPoints)
     {
@@ -89,7 +67,7 @@ public class Player : MonoBehaviour
     {
         _health = _basicHealth;
         _isDead = false;
-        _isBase = false;
+        _trigger.Restart();
         transform.position = _basicPosition;        
         ChangingHealth?.Invoke(_health);
     }

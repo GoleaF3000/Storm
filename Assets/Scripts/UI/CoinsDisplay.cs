@@ -5,17 +5,17 @@ using UnityEngine;
 
 public class CoinsDisplay : MonoBehaviour
 {
-    [SerializeField] private Player _player;
+    [SerializeField] private PlayerWallet _wallet;
     [SerializeField] private TMP_Text _coinsDisplay;
 
     private void OnEnable()
     {
-        _player.AddedReward += ChangeCoins;
+        _wallet.AddedReward += ChangeCoins;
     }
 
     private void OnDisable()
     {
-        _player.AddedReward -= ChangeCoins;
+        _wallet.AddedReward -= ChangeCoins;
     }
 
     private void ChangeCoins(int reward)

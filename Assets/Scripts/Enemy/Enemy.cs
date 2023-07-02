@@ -14,10 +14,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _delay;
     [SerializeField] private int _reward;
 
-    public UnityAction<int> SetMaxHealth;
-    public UnityAction<int> ChangeHealth;
+    public event UnityAction<int> SetMaxHealth;
+    public event UnityAction<int> ChangeHealth;
 
     private Player _player;
+    private PlayerWallet _wallet;
     private Player _targetPlayer;
     private Sandbags _targetSanbags;
     private Animator _animator;   
@@ -61,7 +62,7 @@ public class Enemy : MonoBehaviour
 
         if (_health <= 0)
         {
-            _player.PutReward(_reward);
+            _wallet.PutReward(_reward);
             Destroy(gameObject);
         }
     }
@@ -103,9 +104,10 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void Init(Player player)
+    public void Init(Player player, PlayerWallet wallet)
     {
-        _player = player;  
+        _player = player;
+        _wallet = wallet;
         _moveState.Init(player);
         _moveTransition.Init(player);
     }

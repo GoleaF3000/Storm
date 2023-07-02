@@ -5,22 +5,22 @@ using UnityEngine;
 public class MoveCamera : MonoBehaviour
 {
     [SerializeField] private Player _player;
-    [SerializeField] private float _addToPositionX;
-    [SerializeField] private float _positionY;
-    [SerializeField] private float _positionZ;    
+    [SerializeField] private PlayerTrigger _playerTrigger;
+    [SerializeField] private float _addToPositionX;    
+    [SerializeField] private Vector3 _position;
 
-    void Start()
+    private void Start()
     {
         transform.position = new Vector3(_player.transform.position.x + _addToPositionX,
-            _positionY, _positionZ);
+            _position.y, _position.z);
     }
     
-    void Update()
+    private void Update()
     {
-        if (_player.IsBase == false)
+        if (_playerTrigger.IsBase == false)
         {
             transform.position = new Vector3(_player.transform.position.x + _addToPositionX,
-                _positionY, _positionZ);
+                _position.y, _position.z);
         }        
     }
 }

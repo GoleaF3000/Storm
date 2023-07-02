@@ -7,7 +7,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Animator))]
 public class PlayerCelebrateState : State
 {
-    public UnityAction Celebrate;
+    public event UnityAction Celebrate;
 
     private Animator _animator;
 

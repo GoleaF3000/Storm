@@ -14,7 +14,8 @@ public class PlayerJumpState : State
     private PlayerDefenceTransition _defenceTransition;
     private Rigidbody2D _rigidbody;
     private Animator _animator;
-    private bool _isJump = false;
+    private bool _isJump;
+
     public bool IsJump => _isJump;
 
     private void Awake()

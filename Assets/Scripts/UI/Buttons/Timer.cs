@@ -7,11 +7,12 @@ public class Timer : MonoBehaviour
 {
     [SerializeField] private SkillButton _skillButton;
 
-    public UnityAction<float> TimeProgress;
-    public UnityAction StartTimer;
-    public UnityAction StopTimer;
+    public event UnityAction<float> TimeProgress;
+    public event UnityAction StartTimer;
+    public event UnityAction StopTimer;
 
     private float _countTime;
+
     public float CountTime => _countTime;
 
     private void OnEnable()

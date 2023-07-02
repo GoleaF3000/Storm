@@ -7,8 +7,8 @@ public class Sandbags : MonoBehaviour
 {
     [SerializeField] private int _health;
 
-    public UnityAction<int> SetMaxHealth;
-    public UnityAction<int> ChangeHealth;
+    public event UnityAction<int> SetMaxHealth;
+    public event UnityAction<int> ChangeHealth;
 
     private int _baseHealth;
 

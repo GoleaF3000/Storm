@@ -7,11 +7,10 @@ public class EnemyRespawn : MonoBehaviour
 {
     [SerializeField] private Enemy _enemy;
     [SerializeField] private int _countEnemy;
-    [SerializeField] private float _dispersionMinX;
-    [SerializeField] private float _dispersionMaxX;
-    [SerializeField] private float _dispersionMinY;
-    [SerializeField] private float _dispersionMaxY;
-    [SerializeField] private Player _player;    
+    [SerializeField] private Vector2 _minOfset;
+    [SerializeField] private Vector2 _maxOfset;    
+    [SerializeField] private Player _player;
+    [SerializeField] private PlayerWallet _wallet;
 
     private float _multiplicity = 100;
     private System.Random _random = new System.Random();
@@ -21,15 +20,15 @@ public class EnemyRespawn : MonoBehaviour
         for (int i = 0; i < _countEnemy; i++)
         {
             float positionX = transform.position.x + ((Convert.ToSingle(_random.Next
-                (Convert.ToInt32(_dispersionMinX * _multiplicity),
-                Convert.ToInt32(_dispersionMaxX * _multiplicity)))) / _multiplicity);
+                (Convert.ToInt32(_minOfset.x * _multiplicity),
+                Convert.ToInt32(_maxOfset.x * _multiplicity)))) / _multiplicity);
             float positionY = transform.position.y + ((Convert.ToSingle(_random.Next
-                (Convert.ToInt32(_dispersionMinY * _multiplicity),
-                Convert.ToInt32(_dispersionMaxY * _multiplicity)))) / _multiplicity);
-            Vector3 enemyPosition = new Vector3(positionX, positionY);
+                (Convert.ToInt32(_minOfset.y * _multiplicity),
+                Convert.ToInt32(_maxOfset.y * _multiplicity)))) / _multiplicity);
+            Vector3 position = new Vector3(positionX, positionY, 0);
 
-            var spawnedEnemy = Instantiate(_enemy, enemyPosition, Quaternion.identity);
-            spawnedEnemy.Init(_player);
+            var spawnedEnemy = Instantiate(_enemy, position, Quaternion.identity);
+            spawnedEnemy.Init(_player, _wallet);
         }
     }
 }

@@ -10,8 +10,8 @@ public class PlayerDefenseState : State
     [SerializeField] private Weapon _currentWeapon;
     [SerializeField] private Transform _shootpoint;
 
-    public UnityAction Defensive;
-    public UnityAction Undefensive;
+    public event UnityAction Defensive;
+    public event UnityAction Undefensive;
 
     private float _delay;
     private Animator _animator;

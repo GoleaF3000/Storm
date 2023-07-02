@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public abstract class SkillButton : MonoBehaviour
 {
     [SerializeField] protected Player _player;
+    [SerializeField] private PlayerWallet _wallet;
     [SerializeField] private bool _isPaid;
     [SerializeField] private int _price;
     [SerializeField] private bool _isTemporary;
@@ -15,10 +16,10 @@ public abstract class SkillButton : MonoBehaviour
     [SerializeField] private float _timeBlocked;
     [SerializeField] private Timer _timer;
 
-    public UnityAction OnSignalTemporary;
-    public UnityAction OffSignalTemporary;
-    public UnityAction OnLogic;
-    public UnityAction OffLogic;
+    public event UnityAction OnSignalTemporary;
+    public event UnityAction OffSignalTemporary;
+    public event UnityAction OnLogic;
+    public event UnityAction OffLogic;
     
     private bool _isTimerStop;    
     private float _duration;
@@ -93,9 +94,9 @@ public abstract class SkillButton : MonoBehaviour
     {
         bool result = false;
 
-        if (_isPaid == true && _price <= _player.Wallet)
+        if (_isPaid == true && _price <= _wallet.CountCoins)
         {
-            _player.PayCoins(_price);
+            _wallet.PayCoins(_price);
             result = true;
         }
         else if (_isPaid == false)

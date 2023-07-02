@@ -8,8 +8,8 @@ public class Screen : MonoBehaviour
     [SerializeField] protected Player _player;
     [SerializeField] protected GameObject[] _elementsForManage;
 
-    public UnityAction ClosedPanel;
-    public UnityAction OpenPanel;  
+    public event UnityAction ClosedPanel;
+    public event UnityAction OpenPanel;  
 
     public void Open()
     {

@@ -441,8 +441,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1249968840}
     - target: {fileID: 7531236119937326884, guid: a49f38049517299479d1a94a832259d0, type: 3}
+      propertyPath: _wallet
+      value: 
+      objectReference: {fileID: 1249968861}
+    - target: {fileID: 7531236119937326884, guid: a49f38049517299479d1a94a832259d0, type: 3}
       propertyPath: _countEnemy
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531236119937326884, guid: a49f38049517299479d1a94a832259d0, type: 3}
+      propertyPath: _maxOfset.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531236119937326884, guid: a49f38049517299479d1a94a832259d0, type: 3}
+      propertyPath: _minOfset.y
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -528,8 +540,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1249968840}
     - target: {fileID: 7531236119937326884, guid: a49f38049517299479d1a94a832259d0, type: 3}
+      propertyPath: _wallet
+      value: 
+      objectReference: {fileID: 1249968861}
+    - target: {fileID: 7531236119937326884, guid: a49f38049517299479d1a94a832259d0, type: 3}
       propertyPath: _countEnemy
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531236119937326884, guid: a49f38049517299479d1a94a832259d0, type: 3}
+      propertyPath: _maxOfset.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531236119937326884, guid: a49f38049517299479d1a94a832259d0, type: 3}
+      propertyPath: _maxOfset.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531236119937326884, guid: a49f38049517299479d1a94a832259d0, type: 3}
+      propertyPath: _minOfset.x
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531236119937326884, guid: a49f38049517299479d1a94a832259d0, type: 3}
+      propertyPath: _minOfset.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -1004,9 +1036,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 1249968840}
+  _playerTrigger: {fileID: 1249968862}
   _addToPositionX: 10
-  _positionY: 2.15
-  _positionZ: -20
+  _position: {x: 0, y: 2.15, z: -20}
 --- !u!61 &519420034
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1875,6 +1907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 1249968840}
+  _wallet: {fileID: 1249968861}
   _isPaid: 1
   _price: 50
   _isTemporary: 0
@@ -1902,6 +1935,8 @@ GameObject:
   - component: {fileID: 1249968841}
   - component: {fileID: 1249968854}
   - component: {fileID: 1249968840}
+  - component: {fileID: 1249968861}
+  - component: {fileID: 1249968862}
   - component: {fileID: 1249968847}
   - component: {fileID: 1249968850}
   - component: {fileID: 1249968849}
@@ -2258,6 +2293,31 @@ MonoBehaviour:
   _targetState: {fileID: 1249968850}
   _gameOverScreen: {fileID: 1369206330}
   _victoryScreen: {fileID: 1022376923}
+--- !u!114 &1249968861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249968835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bc87840304043244b4b128b126f8122, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _countCoins: 0
+--- !u!114 &1249968862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249968835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d8d390c9f7926a4190f79572775a73f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1306626674
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3579,6 +3639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 1249968840}
+  _wallet: {fileID: 1249968861}
   _isPaid: 1
   _price: 10
   _isTemporary: 0
@@ -3992,7 +4053,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fe7e02fffedfb6459b9363a9c083b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 1249968840}
+  _wallet: {fileID: 1249968861}
   _coinsDisplay: {fileID: 1740249251}
 --- !u!114 &1740249251
 MonoBehaviour:
@@ -4186,6 +4247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 1249968840}
+  _wallet: {fileID: 1249968861}
   _isPaid: 0
   _price: 0
   _isTemporary: 1
@@ -4275,8 +4337,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1249968840}
     - target: {fileID: 7531236119937326884, guid: a49f38049517299479d1a94a832259d0, type: 3}
+      propertyPath: _wallet
+      value: 
+      objectReference: {fileID: 1249968861}
+    - target: {fileID: 7531236119937326884, guid: a49f38049517299479d1a94a832259d0, type: 3}
       propertyPath: _countEnemy
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531236119937326884, guid: a49f38049517299479d1a94a832259d0, type: 3}
+      propertyPath: _maxOfset.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531236119937326884, guid: a49f38049517299479d1a94a832259d0, type: 3}
+      propertyPath: _maxOfset.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531236119937326884, guid: a49f38049517299479d1a94a832259d0, type: 3}
+      propertyPath: _minOfset.x
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531236119937326884, guid: a49f38049517299479d1a94a832259d0, type: 3}
+      propertyPath: _minOfset.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
